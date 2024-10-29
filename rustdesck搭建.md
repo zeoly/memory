@@ -38,6 +38,15 @@ sudo docker run --name hbbs -p 21115:21115 -p 21116:21116 -p 21116:21116/udp -p 
 sudo docker run --name hbbr -p 21117:21117 -p 21119:21119 -v /mnt/user/appdata/rustdesk:/root -td rustdesk/rustdesk-server hbbr
 ```
 
+### 其他
+
+开放端口
+
+默认情况下，hbbs 监听21115(tcp), 21116(tcp/udp), 21118(tcp)，hbbr 监听21117(tcp), 21119(tcp)。务必在防火墙开启这几个端口， 请注意21116同时要开启TCP和UDP 。其中21115是hbbs用作NAT类型测试，21116/UDP是hbbs用作ID注册与心跳服务，21116/TCP是hbbs用作TCP打洞与连接服务，21117是hbbr用作中继服务, 21118和21119是为了支持网页客户端。如果您不需要网页客户端（21118，21119）支持，对应端口可以不开。
+
+TCP( 21115, 21116, 21117, 21118, 21119 )
+UDP( 21116 )
+
 ## 客户端配置
 
 在官网（目前跳转github）下载客户端，安装后进入 **设置** -> **网络**，配置如下：
@@ -47,3 +56,4 @@ sudo docker run --name hbbr -p 21117:21117 -p 21119:21119 -v /mnt/user/appdata/r
 - Key: hbbs服务日志中的key值
 
 回到主页，左下角显示就绪，表示连接成功
+
